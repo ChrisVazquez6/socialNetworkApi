@@ -52,3 +52,27 @@ module.exports = (
       11: 'December'
     };
   }
+  const dateObj = new Date(timestamp);
+  const formattedMonth = months[dateObj.getMonth()];
+
+  let dayOfMonth;
+
+  if (dateSuffix) {
+    dayOfMonth = addDateSuffix(dateObj.getDate());
+  } else {
+    dayOfMonth = dateObj.getDate();
+  }
+
+  const year = dateObj.getFullYear();
+
+  let hour;
+  // check for 24-hr time
+  if (dateObj.getHours > 12) {
+    hour = Math.floor(dateObj.getHours() / 2);
+  } else {
+    hour = dateObj.getHours();
+  }
+  // if hour is 0 (12:00am), change it to 12
+  if (hour === 0) {
+    hour = 12;
+  }
